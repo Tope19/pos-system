@@ -28,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        if (!isset($_SERVER['SERVER_PORT'])) {
+    $_SERVER['SERVER_PORT'] = getenv('SERVER_PORT');
+}
         if( (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
             URL::forceScheme('https');
         }
